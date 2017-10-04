@@ -4,15 +4,24 @@
     path: /etc/kubernetes/pki
   register: ca
 
-  # TODO: remove --skip-preflight-checks flag if issue 347 is fixed.
-  # ref. https://github.com/kubernetes/kubeadm/issues/347
 - block:
+    - meta: flush_handlers
+    # workaround for https://github.com/kubernetes/kubernetes/issues/53356
+    - name: stop kubelet
+      systemd: name=kubelet state=stopped
+      become: yes
+
+    - name: remove kubelet conf
+      file:
+        path: /var/lib/kubelet/pki
+        state: absent
+      become: yes
+
     - name: kubeadam join
       shell: >
         kubeadm join
         --token={{ kubeadm_token }}
         {{ kube_master_host }}:{{ kube_master_api_port }}
-        --skip-preflight-checks
       become: yes
       register: output
 

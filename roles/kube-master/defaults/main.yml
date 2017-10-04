@@ -1,2 +1,4 @@
 ---
 kube_service_cidr: 10.254.0.0/16
+kube_users:
+  - vagrant

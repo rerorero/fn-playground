@@ -55,4 +55,4 @@
     append: yes
   become: yes
 
-- include: docker-py.yml
+- include_tasks: docker-py.yml

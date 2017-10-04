@@ -21,3 +21,13 @@
     - kubeadm
     - kubectl
   become: yes
+
+  # https://github.com/kubernetes/kubernetes/issues/53333
+- name: disable kubelet fail-swap-on
+  lineinfile:
+    path: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+    state: present
+    line: 'Environment="KUBELET_EXTRA_ARGS=--fail-swap-on=false"'
+    insertafter: '^\[Service\]'
+  become: yes
+  notify: restart kubectl

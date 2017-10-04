@@ -1,12 +1,15 @@
 ---
 resolved_ips:
-  192.168.50.21:
+  192.168.50.51:
     names: [fn1]
-  192.168.50.22:
+  192.168.50.52:
     names: [fn2]
-  192.168.50.23:
+  192.168.50.53:
     names: [fn3]
 
 kube_master_host: "{{ groups['kube-master'][0] }}"
+kube_master_api_port: 8080
 kubeadm_token: abcdef.ghijklmnopqrstuv
 kube_conf_dir: /etc/kubernetes
+kubectl_conf_path: /etc/kubernetes/admin.conf
+kube_manifest_dir: "{{ kube_conf_dir }}/manifests"

@@ -5,6 +5,18 @@
   register: ca
 
 - block:
+    - meta: flush_handlers
+    # workaround for https://github.com/kubernetes/kubernetes/issues/53356
+    - name: stop kubelet
+      systemd: name=kubelet state=stopped
+      become: yes
+
+    - name: remove kubelet conf
+      file:
+        path: /var/lib/kubelet/pki
+        state: absent
+      become: yes
+        
     - name: kubeadam init
       shell: >
         kubeadm init
@@ -12,6 +24,7 @@
         --apiserver-bind-port={{ kube_master_api_port }}
         --pod-network-cidr={{ kube_service_cidr }}
         --token={{ kubeadm_token}}
+        --token-ttl=0
       become: yes
       register: output
 
