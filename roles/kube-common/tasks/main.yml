@@ -1,0 +1,23 @@
+---
+- name: Add kubernetes' official GPG key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+  become: yes
+
+- name: Set up kubernetes repository
+  apt_repository:
+    repo: "{{ kube_repo }}"
+    state: present
+  become: yes
+
+- name: Install kubelet, kubeadm, kubectl
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - kubelet
+    - kubeadm
+    - kubectl
+  become: yes

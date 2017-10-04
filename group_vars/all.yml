@@ -1,0 +1,12 @@
+---
+resolved_ips:
+  192.168.50.21:
+    names: [fn1]
+  192.168.50.22:
+    names: [fn2]
+  192.168.50.23:
+    names: [fn3]
+
+kube_master_host: "{{ groups['kube-master'][0] }}"
+kubeadm_token: abcdef.ghijklmnopqrstuv
+kube_conf_dir: /etc/kubernetes

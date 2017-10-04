@@ -1,0 +1,2 @@
+---
+kube_service_cidr: 10.254.0.0/16

@@ -1,0 +1,2 @@
+---
+kube_repo: "deb http://apt.kubernetes.io/ kubernetes-{{ ansible_lsb.codename }} main stable"

@@ -1,0 +1,14 @@
+fn1 ansible_host=192.168.50.51
+fn2 ansible_host=192.168.50.52
+fn3 ansible_host=192.168.50.53
+
+[kube-master]
+fn1
+
+[kube-node]
+fn2
+fn3
+
+[all:vars]
+ansible_user=vagrant
+ansible_ssh_pass=vagrant
