@@ -1,0 +1,3 @@
+---
+registry_local_storage_path: /var/registry
+registry_conf_dir: "{{ kube_conf_dir }}/registry"

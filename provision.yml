@@ -11,3 +11,13 @@
 - hosts: kube-node
   roles:
     - kube-node
+
+- hosts: kube-registry
+  run_once: yes
+  roles:
+    - registry
+
+- hosts: kube-master
+  run_once: yes
+  roles:
+    - fn

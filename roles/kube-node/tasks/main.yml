@@ -27,3 +27,14 @@
 
     - debug: msg={{ output.stdout_lines }}
   when: ca.stat.isdir is not defined
+
+- name: Read kubernetes master conf
+  command: "sudo cat {{ kubectl_conf_path }}"
+  register: kube_admin_conf
+  delegate_to: "{{ kube_master_host }}"
+
+- name: Copy kubernetes master conf
+  copy:
+    content: "{{ kube_admin_conf.stdout }}"
+    dest: "{{ kubectl_conf_path }}"
+  become: yes

@@ -1,0 +1,21 @@
+---
+- name: Create config dir
+  file:
+    path: "{{ fn_conf_dir }}"
+    state: directory
+    mode: 0755
+  become: yes
+
+- name: Put svc yml
+  template:
+    src: "fn-svc.yml.j2"
+    dest: "{{ fn_conf_dir }}/fn-svc.yml"
+  become: yes
+
+- name: Apply svc yml
+  kubectl:
+    action: apply
+    filepath: "{{ fn_conf_dir }}/fn-svc.yml"
+  environment:
+    KUBECONFIG: "{{ kubectl_conf_path }}"
+  become: yes

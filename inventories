@@ -9,6 +9,9 @@ fn1
 fn2
 fn3
 
+[kube-registry]
+fn2
+
 [all:vars]
 ansible_user=vagrant
 ansible_ssh_pass=vagrant
