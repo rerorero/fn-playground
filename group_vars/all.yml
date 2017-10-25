@@ -14,6 +14,6 @@ kube_conf_dir: /etc/kubernetes
 kubectl_conf_path: /etc/kubernetes/admin.conf
 kube_manifest_dir: "{{ kube_conf_dir }}/manifests"
 
-kube_registry_port: 30000
+kube_registry_port: 5000
 fn_port: 30081
 fn_ui_port: 30080

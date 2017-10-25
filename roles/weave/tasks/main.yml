@@ -11,9 +11,7 @@
   become: yes
 
 - name: Setup weave pod
-  kubectl:
-    action: present
-    filepath: "{{ weave_manifest_path }}"
+  command: kubectl apply -f {{ weave_manifest_path }}
   environment:
     KUBECONFIG: "{{ kubectl_conf_path }}"
   become: yes

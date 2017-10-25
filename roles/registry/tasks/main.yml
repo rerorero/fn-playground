@@ -23,9 +23,7 @@
   become: yes
 
 - name: Apply registry ymls
-  kubectl:
-    action: apply
-    filepath: "{{ registry_conf_dir }}/{{ item }}"
+  command: kubectl apply -f {{ registry_conf_dir }}/{{ item }}
   environment:
     KUBECONFIG: "{{ kubectl_conf_path }}"
   with_items:

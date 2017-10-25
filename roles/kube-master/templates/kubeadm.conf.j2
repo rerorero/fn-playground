@@ -1,0 +1,12 @@
+---
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+api:
+  advertiseAddress: {{ ansible_host }}
+  bindPort: {{ kube_master_api_port }}
+networking:
+  podSubnet: {{ kube_service_cidr }}
+token: {{ kubeadm_token}}
+tokenTTL: "0"
+apiServerExtraArgs:
+  service-node-port-range: 80-32767
