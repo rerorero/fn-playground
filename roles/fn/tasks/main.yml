@@ -24,6 +24,5 @@
     content: |
       export API_URL=http://{{ ansible_host }}:{{ fn_port }}
       export FN_REGISTRY=rerorero
-      export FN_APP_NAME=test
     dest: "{{ playbook_dir }}/functions/setup.sh"
     mode: 0755
