@@ -26,3 +26,5 @@
       export FN_REGISTRY=rerorero
     dest: "{{ playbook_dir }}/functions/setup.sh"
     mode: 0755
+
+- include_tasks: flow.yml

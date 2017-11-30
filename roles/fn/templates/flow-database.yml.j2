@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: mysql
+  labels:
+    app: mysql
+    role: flow-database
+spec:
+  ports:
+  - port: 3306
+    targetPort: 3306
+  selector:
+    app: mysql
+    role: flow-database
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+        role: flow-database
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+      - name: flow-mysql
+        image: mysql:5.7
+        imagePullPolicy: Always
+        args:
+          - "--max-connections=500"
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: fnsecretpassword
+        - name: MYSQL_DATABASE
+          value: flow

@@ -56,3 +56,4 @@
   become: yes
 
 - include_tasks: docker-py.yml
+- include_tasks: grub.yml

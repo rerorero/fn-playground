@@ -7,3 +7,6 @@
   service: name=docker state=restarted
   become: yes
 
+- name: Reload grub
+  command: update-grub
+  become: yes

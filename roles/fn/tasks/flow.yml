@@ -1,0 +1,18 @@
+---
+- name: Put flow resources
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ fn_conf_dir }}/{{ item }}"
+  with_items:
+    - flow-database.yml
+    - flow-service.yml
+  become: yes
+
+- name: Apply flow resources
+  command: kubectl apply -f {{ fn_conf_dir }}/{{ item }}
+  environment:
+    KUBECONFIG: "{{ kubectl_conf_path }}"
+  with_items:
+    - flow-database.yml
+    - flow-service.yml
+  become: yes
