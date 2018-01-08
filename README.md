@@ -1,4 +1,4 @@
-# istio-playground
+# fn-playground
 ```
 pip install -r requirements.txt
 vagrant up
